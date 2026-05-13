@@ -97,7 +97,7 @@ export default function Methodologies() {
       {METHODOLOGIES_DATA.map((method, index) => (
         <div
           key={method.id}
-          ref={(el) => (cardsRef.current[index] = el)}
+          ref={(el) => { cardsRef.current[index] = el; }}
           className={styles.cardWrapper}
           style={{ zIndex: index + 1 }}
         >

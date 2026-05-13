@@ -111,14 +111,14 @@ export default function ServicesAccordion() {
                   <h3 className={styles.serviceTitle}>{segmento.title}</h3>
                 </div>
                 <span 
-                  ref={(el) => (iconRefs.current[index] = el)} 
+                  ref={(el) => { iconRefs.current[index] = el; }} 
                   className={styles.icon}
                 >
                   ↓
                 </span>
               </button>
               <div 
-                ref={(el) => (contentRefs.current[index] = el)} 
+                ref={(el) => { contentRefs.current[index] = el; }} 
                 className={styles.accordionContent}
               >
                 <div className={styles.contentInner}>
