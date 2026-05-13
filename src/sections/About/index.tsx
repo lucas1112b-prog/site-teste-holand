@@ -52,7 +52,10 @@ export default function About() {
             playsInline
             className={styles.video}
           >
-            <source src="/videos/videoAbout.mp4" type="video/mp4" />
+            <source 
+              src="https://x0px59ehcws5riem.public.blob.vercel-storage.com/videoAbout.mp4" 
+              type="video/mp4" 
+            />
           </video>
           <div className={styles.overlay} />
         </div>
