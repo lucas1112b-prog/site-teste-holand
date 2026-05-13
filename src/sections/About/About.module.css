@@ -1,0 +1,75 @@
+.about {
+  position: relative;
+  height: 100vh;
+  /* Altura aumentada para mais scroll */
+  width: 100%;
+  overflow: clip;
+  /* Usar clip em vez de hidden para não quebrar o sticky */
+  background-color: #000;
+}
+
+.videoBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.videoStickyWrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+
+.description {
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgba(10, 10, 10, 0.8),
+      rgba(10, 10, 10, 0.4) 50%,
+      rgba(10, 10, 10, 0.8));
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  text-align: left;
+  padding: 40vh 60px 0;
+  /* Posicionamento inicial */
+}
+
+.title {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}

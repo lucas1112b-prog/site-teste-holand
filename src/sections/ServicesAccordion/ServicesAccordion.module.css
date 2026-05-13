@@ -1,0 +1,119 @@
+.servicesAccordion {
+  width: 100%;
+  background-color: #0a0a0a;
+  padding: 200px 0 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 60px;
+}
+
+.header {
+  margin-bottom: 80px;
+}
+
+.label {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordionItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionItem:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.accordionHeader:hover .serviceTitle {
+  color: var(--color-primary);
+  transform: translateX(10px);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.number {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.serviceTitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.4s ease;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.accordionContent {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.contentInner {
+  padding: 0 0 60px 80px; /* Offset to align with title */
+  max-width: 800px;
+}
+
+.contentInner p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 30px;
+  }
+  
+  .headerLeft {
+    gap: 20px;
+  }
+  
+  .contentInner {
+    padding-left: 40px;
+  }
+}
