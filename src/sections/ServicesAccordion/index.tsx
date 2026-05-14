@@ -2,7 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./ServicesAccordion.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SEGMENTOS = [
   {
@@ -44,8 +47,28 @@ const SEGMENTOS = [
 
 export default function ServicesAccordion() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const iconRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const st = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "bottom bottom",
+        pin: true,
+        pinSpacing: false,
+      });
+
+      return () => st.kill();
+    });
+
+    return () => mm.revert();
+  }, []);
 
   const toggleAccordion = (index: number) => {
     if (activeIndex === index) {
@@ -88,8 +111,25 @@ export default function ServicesAccordion() {
     });
   }, [activeIndex]);
 
+  const CornerSVG = ({ className }: { className: string }) => (
+    <svg className={className} width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_24_236)">
+        <path d="M110.427 0H0V110.427L110.427 0Z" fill="#000" />
+      </g>
+      <defs>
+        <clipPath id="clip0_24_236">
+          <rect width="110.427" height="110.427" fill="#000" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+
   return (
-    <section className={styles.servicesAccordion}>
+    <section ref={sectionRef} className={styles.servicesAccordion}>
+      {/* Corner SVGs */}
+      <CornerSVG className={`${styles.corner} ${styles.topLeft}`} />
+      <CornerSVG className={`${styles.corner} ${styles.topRight}`} />
+
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.label}>Nossa Atuação</span>
@@ -98,27 +138,27 @@ export default function ServicesAccordion() {
 
         <div className={styles.accordionList}>
           {SEGMENTOS.map((segmento, index) => (
-            <div 
-              key={segmento.id} 
+            <div
+              key={segmento.id}
               className={`${styles.accordionItem} ${activeIndex === index ? styles.active : ""}`}
             >
-              <button 
-                className={styles.accordionHeader} 
+              <button
+                className={styles.accordionHeader}
                 onClick={() => toggleAccordion(index)}
               >
                 <div className={styles.headerLeft}>
                   <span className={styles.number}>{segmento.id}</span>
                   <h3 className={styles.serviceTitle}>{segmento.title}</h3>
                 </div>
-                <span 
-                  ref={(el) => { iconRefs.current[index] = el; }} 
+                <span
+                  ref={(el) => { iconRefs.current[index] = el; }}
                   className={styles.icon}
                 >
                   ↓
                 </span>
               </button>
-              <div 
-                ref={(el) => { contentRefs.current[index] = el; }} 
+              <div
+                ref={(el) => { contentRefs.current[index] = el; }}
                 className={styles.accordionContent}
               >
                 <div className={styles.contentInner}>

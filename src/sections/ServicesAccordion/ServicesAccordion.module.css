@@ -3,6 +3,26 @@
   background-color: #0a0a0a;
   padding: 200px 0 120px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.corner {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+}
+
+.topLeft {
+  left: 0;
+  transform: translate(-2px, -2px);
+}
+
+.topRight {
+  right: 0;
+  transform: scaleX(-1) translate(2px, -2px);
 }
 
 .container {
@@ -93,7 +113,8 @@
 }
 
 .contentInner {
-  padding: 0 0 60px 80px; /* Offset to align with title */
+  padding: 0 0 60px 80px;
+  /* Offset to align with title */
   max-width: 800px;
 }
 
@@ -108,11 +129,11 @@
   .container {
     padding: 0 30px;
   }
-  
+
   .headerLeft {
     gap: 20px;
   }
-  
+
   .contentInner {
     padding-left: 40px;
   }

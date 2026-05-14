@@ -58,16 +58,27 @@
   width: 50px;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  clip-path: polygon(80.22% 0%,
-      100% 25.85%,
-      100% 100%,
-      19.15% 100%,
-      0% 74.15%,
-      0% 0%);
+  clip-path: polygon(
+    calc(100% - 10px) 0%, 
+    100% 10px, 
+    100% 100%, 
+    10px 100%, 
+    0% calc(100% - 10px), 
+    0% 0%
+  );
 }
 
 .langSelector:hover {
   height: 110px;
+  /* Maintain the same pixel-based cut to keep the 45deg angle */
+  clip-path: polygon(
+    calc(100% - 10px) 0%, 
+    100% 10px, 
+    100% 100%, 
+    10px 100%, 
+    0% calc(100% - 10px), 
+    0% 0%
+  );
 }
 
 .langOptions {

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import styles from "./Services.module.css"; // Keep using same styles for consistency
+import styles from "./Methodologies.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,11 +50,10 @@ export default function Methodologies() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter((c) => c !== null);
-
+      
       cards.forEach((card, index) => {
         const isLast = index === cards.length - 1;
-
-        // Stacking Pinning
+        
         ScrollTrigger.create({
           trigger: card,
           start: "top top",
@@ -65,7 +64,6 @@ export default function Methodologies() {
           invalidateOnRefresh: true,
         });
 
-        // Scale reduction animation for cards behind
         if (!isLast) {
           gsap.to(card.querySelector(`[class*="card"]`), {
             scale: 0.9,
@@ -86,7 +84,6 @@ export default function Methodologies() {
 
   return (
     <section ref={containerRef} className={styles.services}>
-      {/* Introduction Header for Methodologies */}
       <div className={styles.methodologiesHeader}>
         <h2 className={styles.headerTitle}>Metodologias de aplicação Holand</h2>
         <p className={styles.headerSubtitle}>
@@ -95,14 +92,13 @@ export default function Methodologies() {
       </div>
 
       {METHODOLOGIES_DATA.map((method, index) => (
-        <div
-          key={method.id}
+        <div 
+          key={method.id} 
           ref={(el) => { cardsRef.current[index] = el; }}
           className={styles.cardWrapper}
           style={{ zIndex: index + 1 }}
         >
           <div className={styles.card}>
-            {/* Left Column: Number and Arrow */}
             <div className={styles.leftCol}>
               <span className={styles.number}>{method.id} /</span>
               <div className={styles.redBox}>
@@ -110,25 +106,23 @@ export default function Methodologies() {
               </div>
             </div>
 
-            {/* Middle Column: Image */}
             <div className={styles.imageCol}>
               <div className={styles.imageWrapper}>
-                <Image
-                  src={method.image}
-                  alt={method.title}
+                <Image 
+                  src={method.image} 
+                  alt={method.title} 
                   fill
                   className={styles.img}
                 />
               </div>
             </div>
 
-            {/* Right Column: Content */}
             <div className={styles.contentCol}>
               <div className={styles.content}>
                 <span className={styles.subtitle}>{method.subtitle}</span>
                 <h2 className={styles.title}>{method.title}</h2>
                 <p className={styles.desc}>{method.desc}</p>
-
+                
                 <button className={styles.cta}>
                   <span>{method.cta}</span>
                   <div className={styles.ctaArrow}>
