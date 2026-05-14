@@ -33,8 +33,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vh; /* Rotated width */
-  height: 100vw; /* Rotated height */
+  width: 100vh;
+  /* Rotated width */
+  height: 100vw;
+  /* Rotated height */
   object-fit: cover;
   transform: translate(-50%, -50%) rotate(90deg);
   opacity: 0.8;
@@ -87,7 +89,7 @@
 .descBottom {
   font-size: 1.2rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.83);
 }
 
 .title {
