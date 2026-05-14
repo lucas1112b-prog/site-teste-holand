@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Diferenciais.module.css";
 
 // Lazy load heavy 3D component to improve TBT (Total Blocking Time)
-const Logo3D = dynamic(() => import("@/components/Logo3D"), { 
+const Logo3D = dynamic(() => import("@/components/Logo3D"), {
   ssr: false,
   loading: () => <div style={{ width: '100%', height: '500px' }} />
 });
@@ -65,7 +65,7 @@ export default function Diferenciais() {
       <div className={styles.container}>
         {/* Header Centralizado */}
         <div className={styles.header}>
-          <h2 className={styles.title}>POR QUE NOS ESCOLHER?</h2>
+          <h2 className={styles.title}>Por que nos escolher?</h2>
           <p className={styles.text}>
             Somos especializados na representação comercial de soluções tecnológicas para a indústria.
             Nossa expertise se concentra na implementação de tecnologias de ponta,

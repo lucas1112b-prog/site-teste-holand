@@ -1,0 +1,159 @@
+.footer {
+  background-color: #0a0a0a;
+  padding: 100px 0 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80vh;
+  z-index: 100; /* Higher than pinned sections */
+}
+
+.footerCircle {
+  position: absolute;
+  bottom: -40vw;
+  /* Coming from outside the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 80vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 49, 15, 0.232) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(40px);
+}
+
+.giantLogoContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 5;
+}
+
+.giantLogo {
+  font-size: 24vw;
+  /* Huge text filling the screen width */
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.03);
+  /* Subtle watermark style */
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--font-zalando);
+  transition: color 0.5s ease;
+}
+
+.footer:hover .giantLogo {
+  color: rgba(255, 255, 255, 0.05);
+}
+
+.bottomBar {
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+}
+
+.navLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+.legal {
+  display: flex;
+  gap: 20px;
+}
+
+.legalLink {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding: 60px 0 40px;
+    min-height: 60vh;
+  }
+
+  .giantLogo {
+    font-size: 28vw;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .navLink {
+    font-size: 0.8rem;
+  }
+
+  .legal {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .giantLogoContainer {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .giantLogo {
+    font-size: 25vw;
+    color: rgba(255, 255, 255, 0.1); /* Direct visibility */
+    opacity: 1;
+    display: block;
+  }
+
+  .footerCircle {
+    width: 150vw;
+    height: 150vw;
+    bottom: -75vw;
+  }
+}
