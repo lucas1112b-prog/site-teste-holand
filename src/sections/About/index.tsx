@@ -52,9 +52,9 @@ export default function About() {
             playsInline
             className={styles.video}
           >
-            <source
-              src="/videos/HOLAND-ANIMA.mp4"
-              type="video/mp4"
+            <source 
+              src="https://tnhsnomywtvafewnhakl.supabase.co/storage/v1/object/public/video%20teste%20site%20holand(nao%20tem%20nada%20a%20ver%20com%20a%20NoBother)/HOLAND-ANIMA.mp4" 
+              type="video/mp4" 
             />
           </video>
           <div className={styles.overlay} />
