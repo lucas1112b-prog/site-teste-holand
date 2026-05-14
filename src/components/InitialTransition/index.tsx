@@ -17,7 +17,7 @@ export default function InitialTransition() {
     // Create cells
     const cells: HTMLDivElement[] = [];
     const totalCells = ROWS * COLS;
-    
+
     // Set columns variable for CSS grid
     overlayRef.current.style.setProperty("--columns", COLS.toString());
 
@@ -29,15 +29,15 @@ export default function InitialTransition() {
     }
 
     // Initial state: fully visible (black screen)
-    gsap.set(cells, { 
-      scale: 1.01, 
+    gsap.set(cells, {
+      scale: 1.01,
       opacity: 1,
       backgroundColor: "#000000" // Cor de fundo da transição
     });
 
     // Animate out (Reveal site)
     const tl = gsap.timeline({
-      delay: 0.5,
+      delay: 1,
       onComplete: () => {
         setIsVisible(false);
       }
@@ -63,9 +63,9 @@ export default function InitialTransition() {
   if (!isVisible) return null;
 
   return (
-    <div 
-      ref={overlayRef} 
-      className={styles.overlay} 
+    <div
+      ref={overlayRef}
+      className={styles.overlay}
       aria-hidden="true"
     />
   );
