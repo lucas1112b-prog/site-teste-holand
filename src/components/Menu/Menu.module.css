@@ -54,31 +54,27 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 38px;
+  height: 34px;
   width: 50px;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  clip-path: polygon(
-    calc(100% - 10px) 0%, 
-    100% 10px, 
-    100% 100%, 
-    10px 100%, 
-    0% calc(100% - 10px), 
-    0% 0%
-  );
+  clip-path: polygon(calc(100% - 10px) 0%,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0% calc(100% - 10px),
+      0% 0%);
 }
 
 .langSelector:hover {
-  height: 110px;
+  height: 100px;
   /* Maintain the same pixel-based cut to keep the 45deg angle */
-  clip-path: polygon(
-    calc(100% - 10px) 0%, 
-    100% 10px, 
-    100% 100%, 
-    10px 100%, 
-    0% calc(100% - 10px), 
-    0% 0%
-  );
+  clip-path: polygon(calc(100% - 10px) 0%,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0% calc(100% - 10px),
+      0% 0%);
 }
 
 .langOptions {
