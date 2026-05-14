@@ -112,6 +112,9 @@ export default function Methodologies() {
                   src={method.image} 
                   alt={method.title} 
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  quality={85}
+                  priority={index < 2}
                   className={styles.img}
                 />
               </div>

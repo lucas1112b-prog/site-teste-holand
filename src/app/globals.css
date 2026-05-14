@@ -80,7 +80,6 @@ body::after {
   height: 100%;
   background-image: url('/gif/noise.gif');
   background-size: 200px;
-  /* Contain/small size for better grain effect */
   background-repeat: repeat;
   opacity: 0.07;
   pointer-events: none;
