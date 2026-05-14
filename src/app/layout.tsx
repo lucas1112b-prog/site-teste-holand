@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Zalando_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 const zalandoSans = Zalando_Sans({ 
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${zalandoSans.variable} font-sans`}>
+        <CustomCursor />
         <SmoothScroll>
           {children}
         </SmoothScroll>
