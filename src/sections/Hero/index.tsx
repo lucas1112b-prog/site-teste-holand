@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import Image from "next/image";
 import styles from "./Hero.module.css";
-import Waves from "@/components/Waves/Waves";
+
+// Lazy load complex canvas animation to improve TBT and LCP
+const Waves = dynamic(() => import("@/components/Waves/Waves"), { 
+  ssr: false,
+  loading: () => <div style={{ position: 'absolute', inset: 0, background: '#0a0a0a' }} />
+});
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);

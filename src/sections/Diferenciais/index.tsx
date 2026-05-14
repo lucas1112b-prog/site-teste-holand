@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Logo3D from "@/components/Logo3D";
 import styles from "./Diferenciais.module.css";
+
+// Lazy load heavy 3D component to improve TBT (Total Blocking Time)
+const Logo3D = dynamic(() => import("@/components/Logo3D"), { 
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '500px' }} />
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
