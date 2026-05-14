@@ -65,7 +65,7 @@
   font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.04em;
-  line-height: 0.9;
+  line-height: 0.74;
   margin: 0;
   pointer-events: none;
   opacity: 0;
@@ -74,7 +74,7 @@
 .scrollIndicator {
   position: absolute;
   bottom: 40px;
-  right: 60px;
+  right: 40px;
   z-index: 10;
   opacity: 0;
 }
@@ -117,7 +117,8 @@
   }
 
   .description {
-    margin-bottom: 25vh; /* Pushes it more towards the vertical center of the screen */
+    margin-bottom: 25vh;
+    /* Pushes it more towards the vertical center of the screen */
   }
 
   .scrollIndicator {
