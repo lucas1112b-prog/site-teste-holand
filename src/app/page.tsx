@@ -7,12 +7,9 @@ import Cases from "@/sections/Cases";
 import Footer from "@/sections/Footer";
 import Menu from "@/components/Menu";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import InitialTransition from "@/components/InitialTransition";
-
 export default function Home() {
   return (
     <main>
-      <InitialTransition />
       <Menu />
       <Hero />
       <About />

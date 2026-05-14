@@ -83,7 +83,7 @@ export default function Methodologies() {
   }, []);
 
   return (
-    <section ref={containerRef} className={styles.services}>
+    <section id="methodologies" ref={containerRef} className={styles.services}>
       <div className={styles.methodologiesHeader}>
         <h2 className={styles.headerTitle}>Metodologias de aplicação Holand</h2>
         <p className={styles.headerSubtitle}>

@@ -125,7 +125,7 @@ export default function ServicesAccordion() {
   );
 
   return (
-    <section ref={sectionRef} className={styles.servicesAccordion}>
+    <section id="services" ref={sectionRef} className={styles.servicesAccordion}>
       {/* Corner SVGs */}
       <CornerSVG className={`${styles.corner} ${styles.topLeft}`} />
       <CornerSVG className={`${styles.corner} ${styles.topRight}`} />

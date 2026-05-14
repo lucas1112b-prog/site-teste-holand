@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useTransition } from "@/context/TransitionContext";
 
 export function TransitionLink({ 
   href, 
@@ -12,16 +12,22 @@ export function TransitionLink({
   href: string; 
   children: React.ReactNode; 
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
-  const router = useRouter();
+  const { startTransition } = useTransition();
 
   const handleTransition = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If it's an internal anchor link, don't trigger page transition
+    if (href.startsWith("#")) {
+      if (onClick) onClick(e);
+      return;
+    }
+
     e.preventDefault();
-    if (onClick) onClick();
+    if (onClick) onClick(e);
     
-    // For now, just navigate. You can add GSAP transitions here later.
-    router.push(href);
+    // Trigger the global exit transition
+    startTransition(href);
   };
 
   return (

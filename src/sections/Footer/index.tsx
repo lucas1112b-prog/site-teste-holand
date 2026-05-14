@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Footer.module.css";
+import { TransitionLink } from "@/components/PageTransition";
+import { usePathname } from "next/navigation";
+import { useTransition } from "@/context/TransitionContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +14,23 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const sectionRef = useRef<HTMLElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { startTransition } = useTransition();
+
+  const handleScroll = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+
+    if (pathname !== '/') {
+      startTransition('/');
+      return;
+    }
+
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: id,
+      ease: "power4.inOut"
+    });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -56,10 +76,11 @@ export default function Footer() {
         </div>
 
         <nav className={styles.nav}>
-          <a href="#about" className={styles.navLink}>Sobre</a>
-          <a href="#services" className={styles.navLink}>Serviços</a>
-          <a href="#cases" className={styles.navLink}>Cases</a>
-          <a href="#contact" className={styles.navLink}>Contato</a>
+          <a href="#about" className={styles.navLink} onClick={(e) => handleScroll(e, '#about')}>Sobre</a>
+          <a href="#services" className={styles.navLink} onClick={(e) => handleScroll(e, '#services')}>Serviços</a>
+          <a href="#cases" className={styles.navLink} onClick={(e) => handleScroll(e, '#cases')}>Cases</a>
+          <TransitionLink href="/blog" className={styles.navLink}>Blog</TransitionLink>
+          <a href="#top" className={styles.navLink} onClick={(e) => handleScroll(e, '#top')}>Contato</a>
         </nav>
 
         <div className={styles.legal}>

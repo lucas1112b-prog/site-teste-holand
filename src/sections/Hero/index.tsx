@@ -69,7 +69,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className={styles.hero}>
+    <section id="top" ref={containerRef} className={styles.hero}>
       <div ref={wavesRef} className={styles.wavesContainer}>
         {isMobile ? (
           <div className={styles.videoWrapper}>

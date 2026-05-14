@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollArrow from "@/components/ScrollArrow";
+import ClientLayout from "@/components/ClientLayout";
 
 const zalandoSans = Zalando_Sans({ 
   subsets: ["latin"],
@@ -24,11 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${zalandoSans.variable} font-sans`}>
-        <CustomCursor />
-        <ScrollArrow />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <ClientLayout>
+          <CustomCursor />
+          <ScrollArrow />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </ClientLayout>
       </body>
     </html>
   );

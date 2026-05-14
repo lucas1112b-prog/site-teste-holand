@@ -42,7 +42,7 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.about}>
+    <section id="about" ref={sectionRef} className={styles.about}>
       <div className={styles.videoBackground}>
         <div className={styles.videoStickyWrapper}>
           <video

@@ -57,7 +57,7 @@ export default function Cases() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.cases}>
+    <section id="cases" ref={sectionRef} className={styles.cases}>
       <div ref={contentRef} className={styles.contentWrapper}>
         {/* Decorative Corner SVG (Section Level) */}
         <div className={styles.cornerDecoration}>

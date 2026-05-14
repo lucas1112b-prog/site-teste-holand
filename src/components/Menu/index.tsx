@@ -1,19 +1,43 @@
-'use client';
+"use client";
 
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import styles from './Menu.module.css';
 import { TransitionLink } from '../PageTransition';
+import { usePathname, useRouter } from 'next/navigation';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { useTransition } from '@/context/TransitionContext';
 
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { startTransition } = useTransition();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    setIsOpen(false);
+    
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      if (pathname !== '/') {
+        // Use global transition instead of direct router.push
+        startTransition('/');
+      } else {
+        gsap.to(window, {
+          duration: 1.5,
+          scrollTo: href,
+          ease: "power4.inOut"
+        });
+      }
+    }
   };
 
   useEffect(() => {
@@ -90,11 +114,12 @@ export default function Menu() {
 
         <div className={styles.dropdown} ref={dropdownRef}>
           <div className={styles.dropdownList}>
-            <TransitionLink href="/" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>HOME</TransitionLink>
-            <TransitionLink href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>SOBRE</TransitionLink>
-            <TransitionLink href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>SERVIÇOS</TransitionLink>
-            <TransitionLink href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>MANIFESTO</TransitionLink>
-            <TransitionLink href="/contato" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>CONTATO</TransitionLink>
+            <TransitionLink href="/" className={styles.dropdownItem} onClick={(e) => handleLinkClick(e, '#top')}>HOME</TransitionLink>
+            <TransitionLink href="#about" className={styles.dropdownItem} onClick={(e) => handleLinkClick(e, '#about')}>SOBRE</TransitionLink>
+            <TransitionLink href="#services" className={styles.dropdownItem} onClick={(e) => handleLinkClick(e, '#services')}>SERVIÇOS</TransitionLink>
+            <TransitionLink href="#methodologies" className={styles.dropdownItem} onClick={(e) => handleLinkClick(e, '#methodologies')}>METODOLOGIAS</TransitionLink>
+            <TransitionLink href="#cases" className={styles.dropdownItem} onClick={(e) => handleLinkClick(e, '#cases')}>CASES</TransitionLink>
+            <TransitionLink href="/blog" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>BLOG</TransitionLink>
           </div>
           <div className={styles.marqueeContainer}>
             <div className={styles.marqueeContent}>
