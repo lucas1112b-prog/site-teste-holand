@@ -18,7 +18,6 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const wavesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,13 +59,6 @@ export default function Hero() {
           ease: "power3.out",
         }, 0.4
       );
-
-      // Scroll Indicator
-      tl.to(scrollRef.current, {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out"
-      }, 0.8);
 
     }, containerRef);
 
@@ -133,11 +125,6 @@ export default function Hero() {
         </h1>
       </div>
 
-      <div ref={scrollRef} className={styles.scrollIndicator}>
-        <div className={styles.arrow}>
-          <span>↓</span>
-        </div>
-      </div>
     </section>
   );
 }

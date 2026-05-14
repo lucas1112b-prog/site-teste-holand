@@ -1,0 +1,80 @@
+.scrollIndicator {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease;
+}
+
+.arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.arrowIcon {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Progress Overlay */
+.progressOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* Will be animated by GSAP */
+  background-color: var(--color-primary);
+  z-index: 1;
+  transition: height 0.1s linear;
+}
+
+/* Pulse animation when at bottom */
+.atBottom .arrow {
+  animation: pulse 2s infinite;
+  background-color: rgba(239, 47, 15, 0.2);
+  border-color: var(--color-primary);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 47, 15, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(239, 47, 15, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 47, 15, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .scrollIndicator {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+}
