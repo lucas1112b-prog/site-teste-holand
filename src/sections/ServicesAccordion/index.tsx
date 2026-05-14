@@ -154,7 +154,9 @@ export default function ServicesAccordion() {
                   ref={(el) => { iconRefs.current[index] = el; }}
                   className={styles.icon}
                 >
-                  ↓
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.27621 2.09808e-05L8.27621 14.3889L1.66703 7.7797L-4.00543e-05 9.4586L9.45854 18.9172L18.9171 9.4586L17.25 7.79152L10.6409 14.3889L10.6409 2.09808e-05H8.27621Z" fill="currentColor"/>
+                  </svg>
                 </span>
               </button>
               <div
