@@ -7,7 +7,7 @@ import Image from "next/image";
 import styles from "./Hero.module.css";
 
 // Lazy load complex canvas animation to improve TBT and LCP
-const Waves = dynamic(() => import("@/components/Waves/Waves"), { 
+const Waves = dynamic(() => import("@/components/Waves/Waves"), {
   ssr: false,
   loading: () => <div style={{ position: 'absolute', inset: 0, background: '#0a0a0a' }} />
 });
@@ -40,7 +40,7 @@ export default function Hero() {
       }, 0);
 
       // Main Title Animation
-      tl.fromTo(titleRef.current, 
+      tl.fromTo(titleRef.current,
         { y: 100, opacity: 0 },
         {
           y: 0,
@@ -51,7 +51,7 @@ export default function Hero() {
       );
 
       // Description Animation
-      tl.fromTo(descriptionRef.current, 
+      tl.fromTo(descriptionRef.current,
         { x: -50, opacity: 0 },
         {
           x: 0,
@@ -88,14 +88,14 @@ export default function Hero() {
               playsInline
               className={styles.mobileVideo}
             >
-              <source 
-                src="https://tnhsnomywtvafewnhakl.supabase.co/storage/v1/object/public/video%20teste%20site%20holand(nao%20tem%20nada%20a%20ver%20com%20a%20NoBother)/mobile-waves.webm" 
-                type="video/webm" 
+              <source
+                src="https://tnhsnomywtvafewnhakl.supabase.co/storage/v1/object/public/video%20teste%20site%20holand(nao%20tem%20nada%20a%20ver%20com%20a%20NoBother)/mobile-waves.mp4"
+                type="video/mp4"
               />
             </video>
           </div>
         ) : (
-          <Waves 
+          <Waves
             lineColor="rgba(239, 47, 15, 0.4)"
             backgroundColor="transparent"
             waveSpeedX={0.02}
@@ -112,11 +112,11 @@ export default function Hero() {
       </div>
 
       <div ref={logoRef} className={styles.logo}>
-        <Image 
-          src="/images/logo-holand.png" 
-          alt="Holand Logo" 
-          width={180} 
-          height={40} 
+        <Image
+          src="/images/logo-holand.png"
+          alt="Holand Logo"
+          width={180}
+          height={40}
           priority
           className={styles.logoImg}
         />

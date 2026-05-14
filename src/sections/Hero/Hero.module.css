@@ -16,7 +16,6 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  opacity: 0.6;
 }
 
 .videoWrapper {
@@ -27,17 +26,27 @@
   height: 100%;
   overflow: hidden;
   background: #000;
+  z-index: 1;
 }
 
 .mobileVideo {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vh; /* Swap width/height for rotation */
-  height: 100vw;
+  width: 100vh; /* Rotated width */
+  height: 100vw; /* Rotated height */
   object-fit: cover;
   transform: translate(-50%, -50%) rotate(90deg);
   opacity: 0.8;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+
+  /* Hide the 3D Waves canvas specifically on mobile via CSS as well */
+  .wavesContainer canvas {
+    display: none !important;
+  }
 }
 
 .logo {
