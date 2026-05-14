@@ -23,7 +23,7 @@ export default function About() {
       });
 
       // Animação de entrada
-      gsap.fromTo(contentRef.current, 
+      gsap.fromTo(contentRef.current,
         { opacity: 0 },
         {
           opacity: 1,
@@ -52,9 +52,9 @@ export default function About() {
             playsInline
             className={styles.video}
           >
-            <source 
-              src="https://x0px59ehcws5riem.public.blob.vercel-storage.com/videoAbout.mp4" 
-              type="video/mp4" 
+            <source
+              src="/videos/HOLAND-ANIMA.mp4"
+              type="video/mp4"
             />
           </video>
           <div className={styles.overlay} />
