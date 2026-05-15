@@ -14,7 +14,7 @@ const Waves = dynamic(() => import("@/components/Waves/Waves"), {
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
       <Image 
         src="/images/waves-image.png" 
-        alt="Holand Waves" 
+        alt="Morgan Waves" 
         fill
         priority
         style={{ objectFit: 'cover', opacity: 0.6 }}
@@ -116,8 +116,8 @@ export default function Hero() {
 
       <div ref={logoRef} className={styles.logo}>
         <Image
-          src="/images/logo-holand.png"
-          alt="Holand Logo"
+          src="/images/logo-morgan.png"
+          alt="Morgan Logo"
           width={180}
           height={40}
           priority

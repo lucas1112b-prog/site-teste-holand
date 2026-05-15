@@ -13,7 +13,7 @@ const zalandoSans = Zalando_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Holand & Co",
+  title: "Morgan & Co",
   description: "Premium Digital Experience",
 };
 

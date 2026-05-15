@@ -132,8 +132,8 @@ export default function Logo3D({
         transition: 'opacity 0.8s ease'
       }}>
         <Image 
-          src="/images/logo-holand-icon.png" 
-          alt="Holand Logo Static" 
+          src="/images/logo-morgan-icon.png" 
+          alt="Morgan Logo Static" 
           width={120} 
           height={120}
           priority

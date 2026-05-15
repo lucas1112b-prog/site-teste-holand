@@ -66,13 +66,13 @@ export default function Footer() {
 
       {/* Giant Logo Watermark */}
       <div className={styles.giantLogoContainer}>
-        <h2 className={styles.giantLogo}>HOLAND</h2>
+        <h2 className={styles.giantLogo}>MORGAN</h2>
       </div>
 
       {/* Navigation and Info Bar */}
       <div className={styles.bottomBar}>
         <div className={styles.copyright}>
-          ©{currentYear} HOLAND & CO. TODOS OS DIREITOS RESERVADOS.
+          ©{currentYear} MORGAN & CO. TODOS OS DIREITOS RESERVADOS.
         </div>
 
         <nav className={styles.nav}>

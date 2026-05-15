@@ -21,7 +21,7 @@ const METHODOLOGIES_DATA = [
     id: "02",
     subtitle: "building dreams.",
     title: "Treinamentos",
-    desc: "Capacitação técnica conduzida pela Holand, com metodologia prática e aprendizado real.",
+    desc: "Capacitação técnica conduzida pela Morgan, com metodologia prática e aprendizado real.",
     image: "/images/method-training.png",
     cta: "SOLICITAR TREINAMENTO"
   },
@@ -85,7 +85,7 @@ export default function Methodologies() {
   return (
     <section id="methodologies" ref={containerRef} className={styles.services}>
       <div className={styles.methodologiesHeader}>
-        <h2 className={styles.headerTitle}>Metodologias de aplicação Holand</h2>
+        <h2 className={styles.headerTitle}>Metodologias de aplicação Morgan</h2>
         <p className={styles.headerSubtitle}>
           Soluções tecnológicas completas e integradas para diferentes segmentos industriais, sempre com foco na eficiência e inovação.
         </p>

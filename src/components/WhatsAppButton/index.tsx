@@ -52,7 +52,7 @@ export default function WhatsAppButton() {
       <span className={styles.text}>FALE COM UM ESPECIALISTA</span>
       <div className={styles.iconWrapper}>
         <Image 
-          src="/images/logo-holand-icon.png" 
+          src="/images/logo-morgan-icon.png" 
           alt="WhatsApp" 
           width={24} 
           height={24}

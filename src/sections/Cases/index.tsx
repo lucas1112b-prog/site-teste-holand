@@ -13,19 +13,19 @@ const CASES_DATA = [
     id: "01",
     name: "Polimold",
     tags: ["TopSolid CAD", "CAM"],
-    logo: "/images/logo-holand.png" // Placeholder as requested
+    logo: "/images/logo-morgan.png" // Placeholder as requested
   },
   {
     id: "02",
     name: "Nidec",
     tags: ["TopSolid CAD", "CAM"],
-    logo: "/images/logo-holand.png" // Placeholder as requested
+    logo: "/images/logo-morgan.png" // Placeholder as requested
   },
   {
     id: "03",
     name: "Vama Ferramentaria",
     tags: ["TopSolid CAD", "CAM"],
-    logo: "/images/logo-holand.png" // Placeholder as requested
+    logo: "/images/logo-morgan.png" // Placeholder as requested
   }
 ];
 

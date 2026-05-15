@@ -73,7 +73,7 @@ export default function BlogPage() {
 
         <div ref={logoRef} className={styles.logo}>
           <a href="/">
-            <Image src="/images/logo-holand.png" alt="Holand Logo" width={180} height={40} priority className={styles.logoImg} />
+            <Image src="/images/logo-morgan.png" alt="Morgan Logo" width={180} height={40} priority className={styles.logoImg} />
           </a>
         </div>
 
