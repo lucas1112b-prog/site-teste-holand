@@ -15,7 +15,19 @@ export default function CustomCursor() {
     opacity: { prev: 0, curr: 0, amt: 0.1 }
   });
 
-  useEffect(() => {
+    const cursorSize = useRef({ width: 0, height: 0 });
+    
+    useEffect(() => {
+    const updateSize = () => {
+      if (cursorRef.current) {
+        const bounds = cursorRef.current.getBoundingClientRect();
+        cursorSize.current = { width: bounds.width, height: bounds.height };
+      }
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
     };
@@ -35,9 +47,8 @@ export default function CustomCursor() {
     // Initial positioning on first move
     const onFirstMove = () => {
       if (cursorRef.current) {
-        const bounds = cursorRef.current.getBoundingClientRect();
-        cursorState.current.tx.prev = cursorState.current.tx.curr = mousePos.current.x - bounds.width / 2;
-        cursorState.current.ty.prev = cursorState.current.ty.curr = mousePos.current.y - bounds.height / 2;
+        cursorState.current.tx.prev = cursorState.current.tx.curr = mousePos.current.x - cursorSize.current.width / 2;
+        cursorState.current.ty.prev = cursorState.current.ty.curr = mousePos.current.y - cursorSize.current.height / 2;
         cursorState.current.opacity.curr = 1;
       }
       window.removeEventListener("mousemove", onFirstMove);
@@ -61,11 +72,9 @@ export default function CustomCursor() {
     let animationFrame: number;
     const render = () => {
       if (cursorRef.current) {
-        const bounds = cursorRef.current.getBoundingClientRect();
-        
-        // Update targets
-        cursorState.current.tx.curr = mousePos.current.x - bounds.width / 2;
-        cursorState.current.ty.curr = mousePos.current.y - bounds.height / 2;
+        // Update targets using cached size
+        cursorState.current.tx.curr = mousePos.current.x - cursorSize.current.width / 2;
+        cursorState.current.ty.curr = mousePos.current.y - cursorSize.current.height / 2;
 
         // Lerp values
         cursorState.current.tx.prev = lerp(cursorState.current.tx.prev, cursorState.current.tx.curr, cursorState.current.tx.amt);
@@ -73,7 +82,7 @@ export default function CustomCursor() {
         cursorState.current.scale.prev = lerp(cursorState.current.scale.prev, cursorState.current.scale.curr, cursorState.current.scale.amt);
         cursorState.current.opacity.prev = lerp(cursorState.current.opacity.prev, cursorState.current.opacity.curr, cursorState.current.opacity.amt);
 
-        // Apply styles
+        // Apply styles with translate3d for GPU acceleration
         cursorRef.current.style.transform = `translate3d(${cursorState.current.tx.prev}px, ${cursorState.current.ty.prev}px, 0) scale(${cursorState.current.scale.prev})`;
         cursorRef.current.style.opacity = cursorState.current.opacity.prev.toString();
       }

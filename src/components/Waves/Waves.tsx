@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, CSSProperties } from 'react';
 import './Waves.css';
+import { useInViewport } from '@/hooks/useInViewport';
 
 class Grad {
   x: number;
@@ -208,6 +209,8 @@ const Waves: React.FC<WavesProps> = ({
     };
   }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
 
+  const isInViewport = useInViewport(containerRef);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -313,7 +316,7 @@ const Waves: React.FC<WavesProps> = ({
     }
 
     function tick(t: number) {
-      if (!container) return;
+      if (!container || !isInViewport) return;
       const mouse = mouseRef.current;
       mouse.sx += (mouse.x - mouse.sx) * 0.1;
       mouse.sy += (mouse.y - mouse.sy) * 0.1;
@@ -361,7 +364,9 @@ const Waves: React.FC<WavesProps> = ({
 
     setSize();
     setLines();
-    frameIdRef.current = requestAnimationFrame(tick);
+    if (isInViewport) {
+      frameIdRef.current = requestAnimationFrame(tick);
+    }
     window.addEventListener('resize', onResize);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -374,7 +379,7 @@ const Waves: React.FC<WavesProps> = ({
         cancelAnimationFrame(frameIdRef.current);
       }
     };
-  }, []);
+  }, [isInViewport]);
 
   return (
     <div

@@ -5,13 +5,15 @@ import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { SVGLoader } from 'three-stdlib';
 import * as THREE from 'three';
 import { Environment, Center } from '@react-three/drei';
+import Image from 'next/image';
+import { useInViewport } from '@/hooks/useInViewport';
 
 // Preload assets outside the component for better performance
 if (typeof window !== 'undefined') {
   useLoader.preload(SVGLoader, '/logo.svg');
 }
 
-function Scene({ scale }: { scale: number }) {
+function Scene({ scale, active }: { scale: number; active: boolean }) {
   const svgData = useLoader(SVGLoader, '/logo.svg');
   const groupRef = useRef<THREE.Group>(null);
 
@@ -22,18 +24,18 @@ function Scene({ scale }: { scale: number }) {
     });
   }, [svgData]);
 
-  const extrudeSettings = {
-    steps: 2,
+  const extrudeSettings = useMemo(() => ({
+    steps: 1,
     depth: 38,
     bevelEnabled: true,
     bevelThickness: 1.2,
     bevelSize: 1.0,
     bevelOffset: 0,
-    bevelSegments: 8,
-  };
+    bevelSegments: 4,
+  }), []);
 
   useFrame((state) => {
-    if (!groupRef.current) return;
+    if (!groupRef.current || !active) return;
 
     const time = state.clock.getElapsedTime();
 
@@ -90,8 +92,23 @@ export default function Logo3D({
   cameraZ = 450,
   marginTop = '0',
 }: Logo3DProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInViewport = useInViewport(containerRef, { rootMargin: '200px' });
+  const [isReady, setIsReady] = React.useState(false);
+  const [shouldMountCanvas, setShouldMountCanvas] = React.useState(false);
+
+  // Delay the mounting of the Canvas until 2.5 seconds after initial render
+  // This ensures the main thread is completely free for LCP and initial GSAP animations
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldMountCanvas(true);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       style={{
         width: size,
         height: size,
@@ -99,14 +116,43 @@ export default function Logo3D({
         marginTop: marginTop,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}
     >
-      <Canvas camera={{ position: [0, 0, cameraZ], fov: 45 }} shadows gl={{ antialias: true }}>
-        <React.Suspense fallback={null}>
-          <Scene scale={scale} />
-        </React.Suspense>
-      </Canvas>
+      {/* Static Image Placeholder while loading or before delayed mount */}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        opacity: isReady ? 0 : 1,
+        pointerEvents: 'none',
+        transition: 'opacity 0.8s ease'
+      }}>
+        <Image 
+          src="/images/logo-holand-icon.png" 
+          alt="Holand Logo Static" 
+          width={120} 
+          height={120}
+          priority
+          style={{ filter: 'brightness(1.1)' }}
+        />
+      </div>
+
+      {shouldMountCanvas && (
+        <Canvas 
+          camera={{ position: [0, 0, cameraZ], fov: 45 }} 
+          shadows 
+          gl={{ antialias: true, powerPreference: "high-performance" }}
+          onCreated={() => setIsReady(true)}
+        >
+          <React.Suspense fallback={null}>
+            <Scene scale={scale} active={isInViewport} />
+          </React.Suspense>
+        </Canvas>
+      )}
     </div>
   );
 }

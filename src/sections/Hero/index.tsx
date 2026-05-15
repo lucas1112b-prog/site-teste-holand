@@ -7,9 +7,20 @@ import Image from "next/image";
 import styles from "./Hero.module.css";
 
 // Lazy load complex canvas animation to improve TBT and LCP
+// Lazy load complex canvas animation with a static placeholder for better LCP
 const Waves = dynamic(() => import("@/components/Waves/Waves"), {
   ssr: false,
-  loading: () => <div style={{ position: 'absolute', inset: 0, background: '#0a0a0a' }} />
+  loading: () => (
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+      <Image 
+        src="/images/waves-image.png" 
+        alt="Holand Waves" 
+        fill
+        priority
+        style={{ objectFit: 'cover', opacity: 0.6 }}
+      />
+    </div>
+  )
 });
 
 export default function Hero() {
