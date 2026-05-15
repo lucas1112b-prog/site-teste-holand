@@ -33,7 +33,7 @@ export default function InitialTransition() {
     }
 
     // Initial state: fully visible (black screen)
-    gsap.set(overlayRef.current, { pointerEvents: "all", visibility: "visible" });
+    gsap.set(overlayRef.current, { pointerEvents: "all", visibility: "visible", backgroundColor: "transparent" });
     gsap.set(cellsRef.current, {
       scale: 1.01,
       opacity: 1,

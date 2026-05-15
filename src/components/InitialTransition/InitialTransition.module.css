@@ -9,6 +9,7 @@
   grid-template-rows: auto;
   z-index: 999999;
   pointer-events: none;
+  background-color: #000000;
 }
 
 .cell {
