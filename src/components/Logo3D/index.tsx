@@ -102,7 +102,7 @@ export default function Logo3D({
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setShouldMountCanvas(true);
-    }, 2500);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -121,20 +121,20 @@ export default function Logo3D({
       }}
     >
       {/* Static Image Placeholder while loading or before delayed mount */}
-      <div style={{ 
-        position: 'absolute', 
-        inset: 0, 
-        display: 'flex', 
-        alignItems: 'center', 
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         opacity: isReady ? 0 : 1,
         pointerEvents: 'none',
         transition: 'opacity 0.8s ease'
       }}>
-        <Image 
-          src="/images/logo-morgan-icon.png" 
-          alt="Morgan Logo Static" 
-          width={120} 
+        <Image
+          src="/images/logo-morgan-icon.png"
+          alt="Morgan Logo Static"
+          width={120}
           height={120}
           priority
           style={{ filter: 'brightness(1.1)' }}
@@ -142,9 +142,9 @@ export default function Logo3D({
       </div>
 
       {shouldMountCanvas && (
-        <Canvas 
-          camera={{ position: [0, 0, cameraZ], fov: 45 }} 
-          shadows 
+        <Canvas
+          camera={{ position: [0, 0, cameraZ], fov: 45 }}
+          shadows
           gl={{ antialias: true, powerPreference: "high-performance" }}
           onCreated={() => setIsReady(true)}
         >
